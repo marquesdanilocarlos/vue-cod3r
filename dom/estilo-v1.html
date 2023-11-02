@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        #app{
+            display: flex;
+            justify-content: space-around;
+        }
+        .demo{
+            width: 100px;
+            height: 100px;
+            background: rgb(128, 128, 128);
+        }
+        .c1{background: red;}
+        .c2{background: blue;}
+        .c3{background: green;}
+    </style>
+</head>
+
+<body>
+
+<div id="app">
+    <div class="demo" :class="{c1: addC1}" @click="addC1 = !addC1"></div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            addC1: false
+        }
+    })
+</script>
+</body>
+</html>

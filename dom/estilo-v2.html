@@ -29,9 +29,9 @@
 <div id="app">
     <div class="boxes">
         <div class="demo" :class="estilo1" @click="addC1 = !addC1"></div>
-        <div class="demo"></div>
+        <div class="demo" :style="{background: fundo}"></div>
         <div class="demo" :class="[classeCss, {'girar': aplicarGirar}]"></div>
-        <input type="text" v-model="classeCss">
+        <input type="text" v-model="fundo">
     </div>
 
 </div>
@@ -42,7 +42,8 @@
         data:{
             addC1: false,
             classeCss: 'c1',
-            aplicarGirar: true
+            aplicarGirar: true,
+            fundo: ''
         },
         computed:{
             estilo1(){

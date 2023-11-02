@@ -24,7 +24,7 @@
 <body>
 
 <div id="app">
-    <div class="demo" :class="{c1: addC1}" @click="addC1 = !addC1"></div>
+    <div class="demo" :class="estilo1" @click="addC1 = !addC1"></div>
     <div class="demo"></div>
     <div class="demo"></div>
 </div>
@@ -34,6 +34,14 @@
         el: "#app",
         data:{
             addC1: false
+        },
+        computed:{
+            estilo1(){
+                return {
+                    c1: this.addC1,
+                    c2: !this.addC1
+                }
+            }
         }
     })
 </script>

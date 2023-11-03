@@ -1,9 +1,8 @@
 <template>
   <div class="contador">
-    <span>{{contador}}</span>
-    <br>
-    <button @click="add">Add</button>
-    <button @click="sub">Sub</button>
+    <span>{{ contador }}</span>
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
   </div>
 </template>
 
@@ -26,6 +25,20 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+span {
+  border-bottom: 1px solid #CCC;
+  height: 30px;
+  padding: 5px 25px;
+}
 
+button {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  background: coral;
+  color: #fff;
+  margin-left: 10px;
+  outline: none;
+}
 </style>

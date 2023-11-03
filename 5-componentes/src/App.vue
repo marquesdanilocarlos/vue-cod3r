@@ -11,6 +11,7 @@ export default {
 
 <template>
   <div id="app">
-    <Contador></Contador>
+    <Contador v-for="c in 5" :key="c"></Contador>
+    <button>Teste</button>
   </div>
 </template>

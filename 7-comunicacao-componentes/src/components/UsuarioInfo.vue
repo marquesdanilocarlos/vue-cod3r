@@ -3,24 +3,26 @@
     <h2>As Informações de Usuário</h2>
     <p>Vários detalhes...</p>
     <p>Nome do Usuário: <strong>{{ nome }}</strong></p>
-    <p>Nome do Usuário invertido: <strong>{{ nomeAlternativo }}</strong></p>
+    <p>Nome do Usuário invertido: <strong>{{ inverterNome() }}</strong></p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['nome'],
-  mounted() {
-    this.inverterNome();
+  props: {
+    nome: {
+      type: String,
+      required: true,
+      default: "Danilo"
+    }
   },
   data(){
     return {
-      nomeAlternativo: ''
     }
   },
   methods: {
     inverterNome() {
-      this.nomeAlternativo = this.nome.split('').reverse().join('');
+      return this.nome.split('').reverse().join('');
     }
   }
 }

@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import Bus from '@/event-bus';
+
 export default {
   props: {
     idade: {
@@ -16,7 +18,8 @@ export default {
   },
   methods: {
     alterarIdade() {
-      this.$emit('idadeMudou', 33)
+      this.idade ++;
+      Bus.$emit('idadeMudou', this.idade);
     }
   }
 }

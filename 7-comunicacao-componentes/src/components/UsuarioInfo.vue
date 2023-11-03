@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import Bus from '@/event-bus';
 export default {
   props: {
     nome: {
@@ -40,6 +41,11 @@ export default {
       this.nome = 'Pedro';
       this.$emit('nomeMudou', {antigo, novo: this.nome});
     }
+  },
+  created() {
+    Bus.$on('idadeMudou', (idade) => {
+      this.idade = idade;
+    });
   }
 }
 </script>

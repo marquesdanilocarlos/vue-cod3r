@@ -5,6 +5,8 @@
     <p>Nome do Usuário: <strong>{{ nome }}</strong></p>
     <p>Nome do Usuário invertido: <strong>{{ inverterNome() }}</strong></p>
     <button @click="reiniciarNome">Reiniciar Nome</button>
+
+    <button @click="reiniciarFn()">Reiniciar com callback</button>
   </div>
 </template>
 
@@ -15,6 +17,9 @@ export default {
       type: String,
       required: true,
       default: "Danilo"
+    },
+    reiniciarFn: {
+      type: Function
     }
   },
   data(){

@@ -5,7 +5,7 @@
     <p>Nome do Usuário: <strong>{{ nome }}</strong></p>
     <p>Nome do Usuário invertido: <strong>{{ inverterNome() }}</strong></p>
 
-    <p>Idade do usuário <strong>{{idade}}</strong></p>
+    <p>Idade do usuário <strong>{{ idade }}</strong></p>
 
     <button @click="reiniciarNome">Reiniciar Nome</button>
     <button @click="reiniciarFn()">Reiniciar com callback</button>
@@ -14,6 +14,7 @@
 
 <script>
 import Bus from '@/event-bus';
+
 export default {
   props: {
     nome: {
@@ -28,22 +29,21 @@ export default {
       type: Number
     }
   },
-  data(){
-    return {
-    }
+  data() {
+    return {}
   },
   methods: {
     inverterNome() {
       return this.nome.split('').reverse().join('');
     },
-    reiniciarNome(){
+    reiniciarNome() {
       let antigo = this.nome;
       this.nome = 'Pedro';
       this.$emit('nomeMudou', {antigo, novo: this.nome});
     }
   },
   created() {
-    Bus.$on('idadeMudou', (idade) => {
+    Bus.quandoIdadeMudar((idade) => {
       this.idade = idade;
     });
   }

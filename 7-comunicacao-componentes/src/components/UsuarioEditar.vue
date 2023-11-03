@@ -19,7 +19,7 @@ export default {
   methods: {
     alterarIdade() {
       this.idade ++;
-      Bus.$emit('idadeMudou', this.idade);
+      Bus.alterarIdade(this.idade);
     }
   }
 }

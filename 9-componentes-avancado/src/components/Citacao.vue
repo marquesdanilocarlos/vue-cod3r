@@ -5,9 +5,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style scoped>
@@ -16,5 +14,9 @@ export default {
   background-color: rgba(0, 0, 0, .1);
   padding: 25px;
   max-width: 450px;
+}
+
+h1 {
+  color: red!important;
 }
 </style>

@@ -7,7 +7,22 @@
 </template>
 
 <script>
-export default {}
+export default {
+
+  created() {
+    console.log('criou');
+  },
+  destroyed() {
+    console.log('destruiu');
+  },
+  activated() {
+    console.log('ativou');
+  },
+  deactivated() {
+    console.log('desativou');
+  }
+
+}
 </script>
 
 <style scoped>

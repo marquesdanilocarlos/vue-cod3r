@@ -23,6 +23,9 @@ export default {
   mounted() {
     EventBus.$on('taskDeleted', this.remove);
     EventBus.$on('stateChanged', this.changeState);
+
+    this.loadTasks();
+
   },
   computed: {
     progress() {
@@ -53,6 +56,21 @@ export default {
       const task = this.tasks[taskId];
       if (task) {
         this.tasks[taskId].pending = !task.pending;
+      }
+    },
+    loadTasks() {
+      const tasks = JSON.parse(localStorage.getItem('tasks'));
+
+      if (Array.isArray(tasks)) {
+        this.tasks = tasks || [];
+      }
+    }
+  },
+  watch: {
+    tasks: {
+      deep: true,
+      handler() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
       }
     }
   }

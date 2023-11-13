@@ -9,16 +9,18 @@
 <script>
 import TaskGrid from "@/components/TaskGrid.vue";
 import NewTask from "@/components/NewTask.vue";
+import EventBus from "@/event-bus";
 
 export default {
   components: {NewTask, TaskGrid},
   data() {
     return {
-      tasks: [
-        {name: 'Lavar a louça', pending: false},
-        {name: 'Comprar blusa', pending: true},
-      ]
+      tasks: []
     }
+  },
+  mounted() {
+    EventBus.$on('taskDeleted', this.remove);
+    EventBus.$on('stateChanged', this.changeState);
   },
   methods: {
     add(task) {
@@ -30,6 +32,18 @@ export default {
           name: task.name,
           pending: task.pending || true
         });
+      }
+    },
+    remove(taskId) {
+      const task = this.tasks[taskId];
+      if (task) {
+        this.tasks.splice(taskId, 1);
+      }
+    },
+    changeState(taskId) {
+      const task = this.tasks[taskId];
+      if (task) {
+        this.tasks[taskId].pending = !task.pending;
       }
     }
   }

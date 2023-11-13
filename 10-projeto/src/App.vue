@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>Tarefas</h1>
+    <Progress :progress="progress"></Progress>
     <NewTask @taskAdded="add"></NewTask>
     <TaskGrid :tasks="tasks"/>
   </div>
@@ -9,10 +10,11 @@
 <script>
 import TaskGrid from "@/components/TaskGrid.vue";
 import NewTask from "@/components/NewTask.vue";
+import Progress from "@/components/Progress.vue";
 import EventBus from "@/event-bus";
 
 export default {
-  components: {NewTask, TaskGrid},
+  components: {Progress, NewTask, TaskGrid},
   data() {
     return {
       tasks: []
@@ -21,6 +23,13 @@ export default {
   mounted() {
     EventBus.$on('taskDeleted', this.remove);
     EventBus.$on('stateChanged', this.changeState);
+  },
+  computed: {
+    progress() {
+      const totalTasks = this.tasks.length;
+      const doneTasks = this.tasks.filter(t => !t.pending).length;
+      return Math.round((doneTasks / totalTasks) * 100 || 0);
+    }
   },
   methods: {
     add(task) {

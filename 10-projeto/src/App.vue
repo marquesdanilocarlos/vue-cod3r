@@ -1,20 +1,36 @@
 <template>
   <div id="app">
     <h1>Tarefas</h1>
-    <TaskGrid :tasks="tasks" />
+    <NewTask @taskAdded="add"></NewTask>
+    <TaskGrid :tasks="tasks"/>
   </div>
 </template>
 
 <script>
 import TaskGrid from "@/components/TaskGrid.vue";
+import NewTask from "@/components/NewTask.vue";
+
 export default {
-  components: {TaskGrid},
+  components: {NewTask, TaskGrid},
   data() {
     return {
       tasks: [
         {name: 'Lavar a louça', pending: false},
         {name: 'Comprar blusa', pending: true},
       ]
+    }
+  },
+  methods: {
+    add(task) {
+      const checkSameName = t => t.name === task.name;
+      const reallyNew = this.tasks.filter(checkSameName).length === 0;
+
+      if (reallyNew) {
+        this.tasks.push({
+          name: task.name,
+          pending: task.pending || true
+        });
+      }
     }
   }
 }

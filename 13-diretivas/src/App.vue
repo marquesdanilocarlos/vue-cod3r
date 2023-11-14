@@ -4,6 +4,8 @@
     <hr>
     <p v-text="'Usando <strong>v-text</strong>'"></p>
     <p v-html="'Usando <strong>v-text</strong>'"></p>
+    <hr>
+    <p v-destaque>Usando diretiva personalizada</p>
 	</div>
 </template>
 

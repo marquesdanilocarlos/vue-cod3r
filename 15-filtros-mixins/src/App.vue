@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <h1>Filtros & Mixins</h1>
-    <p>{{ cpf | cpf | inverter}}</p>
+    <p>{{ cpf | cpf | inverter }}</p>
+    <input type="text" :value="cpf | cpf | inverter">
   </div>
 </template>
 
@@ -32,6 +33,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  font-size: 2.5rem;
+}
+
+input {
   font-size: 2.5rem;
 }
 </style>

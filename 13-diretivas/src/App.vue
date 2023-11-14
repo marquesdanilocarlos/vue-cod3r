@@ -5,13 +5,17 @@
     <p v-text="'Usando <strong>v-text</strong>'"></p>
     <p v-html="'Usando <strong>v-text</strong>'"></p>
     <hr>
-    <p v-destaque>Usando diretiva personalizada</p>
+    <p v-destaque="cor">Usando diretiva personalizada</p>
 	</div>
 </template>
 
 <script>
 export default {
-	
+	data(){
+    return {
+      cor: 'seagreen'
+    }
+  }
 }
 </script>
 

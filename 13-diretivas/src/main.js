@@ -5,7 +5,7 @@ Vue.config.productionTip = false
 
 Vue.directive('destaque', {
 	bind(el, bind, vnode){
-		el.style.backgroundColor = 'lightgreen';
+		el.style.backgroundColor = bind.value;
 	}
 });
 

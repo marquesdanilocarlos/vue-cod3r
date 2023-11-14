@@ -3,11 +3,25 @@
     <h1>Filtros & Mixins</h1>
     <p>{{ cpf | cpf | inverter }}</p>
     <input type="text" :value="cpf | cpf | inverter">
+    <hr>
+    <Frutas/>
+    <hr>
+    <div>
+      <ul>
+        <li v-for="fruta in frutas" :key="fruta">{{ fruta }}</li>
+      </ul>
+      <input type="text" v-model="fruta" @keydown.enter="add">
+    </div>
   </div>
+
 </template>
 
 <script>
+import Frutas from "@/Frutas.vue";
+import frutasMixin from "@/frutasMixin";
 export default {
+  components: {Frutas},
+  mixins: [frutasMixin],
   data() {
     return {
       cpf: '03321844125'

@@ -11,6 +11,13 @@
     <transition name="slide" type="animation" appear>
       <b-alert variant="info" show v-show="exibir">{{ msg }}</b-alert>
     </transition>
+
+    <transition
+        enter-active-class="animated bounce"
+        leave-active-class="animated shake"
+        name="animated" type="animation" appear>
+      <b-alert variant="info" show v-show="exibir">{{ msg }}</b-alert>
+    </transition>
   </div>
 </template>
 
@@ -60,12 +67,20 @@ export default {
 }
 
 @keyframes slide-in {
-  from {transform: translateY(40px)}
-  to {transform: translateY(0px)}
+  from {
+    transform: translateY(40px)
+  }
+  to {
+    transform: translateY(0px)
+  }
 }
 
 @keyframes slide-out {
-  from {transform: translateY(0px)}
-  to {transform: translateY(40px)}
+  from {
+    transform: translateY(0px)
+  }
+  to {
+    transform: translateY(40px)
+  }
 }
 </style>

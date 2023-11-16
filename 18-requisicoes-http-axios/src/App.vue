@@ -1,6 +1,9 @@
 <template>
   <div id="app" class="container">
     <h1>HTTP com Axios</h1>
+    <b-alert show dismissible v-for="mensagem in mensagens" :key="mensagem.texto" :variant="mensagem.tipo">
+      {{ mensagem.texto }}
+    </b-alert>
     <b-card>
       <b-form-group label="Nome:">
         <b-form-input type="text" size="lg" v-model="usuario.nome" placeholder="Informe o nome"></b-form-input>
@@ -50,7 +53,11 @@ export default {
 
       this.$http[method](`/usuarios/${finalUrl}`, this.usuario)
           .then(response => {
-            this.limpar()
+            this.limpar();
+            this.mensagens.push({
+              texto: 'Operação realizada com sucesso!',
+              tipo: 'success'
+            });
           });
     },
     obter() {
@@ -66,11 +73,17 @@ export default {
     },
     excluir(id) {
       this.$http.delete(`/usuarios/${id}.json`)
-          .then(response => this.limpar());
+          .then(response => this.limpar())
+          .catch(error => {
+            this.mensagens.push({
+              texto: 'Erro ao realizar operação!',
+              tipo: 'danger'
+            })
+          });
     }
   },
   watch: {
-    usuarios(){
+    usuarios() {
       console.log(this.usuarios)
     }
   }

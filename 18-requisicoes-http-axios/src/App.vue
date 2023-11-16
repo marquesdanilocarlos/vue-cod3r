@@ -18,6 +18,8 @@
         <strong>Nome: </strong>{{ usuario.nome }}<br/>
         <strong>Email: </strong>{{ usuario.email }}<br/>
         <strong>ID: </strong>{{ usuario.id }}<br/>
+        <b-button variant="warning" size="lg" @click="carregar(id)">Carregar</b-button>
+        <b-button variant="danger" size="lg" class="ml-2" @click="excluir(usuario.id)">Excluir</b-button>
       </b-list-group-item>
     </b-list-group>
   </div>
@@ -28,17 +30,27 @@ export default {
   data() {
     return {
       usuarios: [],
+      id: null,
       usuario: {
         nome: '',
         email: ''
-      }
+      },
+      mensagens: []
     }
   },
   methods: {
+    limpar() {
+      this.usuario = {};
+      this.id = null;
+      this.mensagens = [];
+    },
     salvar() {
-      this.$http.post('usuarios.json', this.usuario)
+      const method = this.id !== null ? 'patch' : 'post';
+      const finalUrl = this.id !== null ? `${this.usuario.id}.json` : '.json';
+
+      this.$http[method](`/usuarios/${finalUrl}`, this.usuario)
           .then(response => {
-            this.usuario = {}
+            this.limpar()
           });
     },
     obter() {
@@ -47,6 +59,19 @@ export default {
             //console.log(response);
             this.usuarios = response.data
           })
+    },
+    carregar(id) {
+      this.id = id;
+      this.usuario = {...this.usuarios[id]}
+    },
+    excluir(id) {
+      this.$http.delete(`/usuarios/${id}.json`)
+          .then(response => this.limpar());
+    }
+  },
+  watch: {
+    usuarios(){
+      console.log(this.usuarios)
     }
   }
   /*created(){

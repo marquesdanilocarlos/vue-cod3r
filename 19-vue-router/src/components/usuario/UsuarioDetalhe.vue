@@ -6,6 +6,9 @@
       <strong>Código:</strong>
       {{ id }}
     </p>
+    <router-link :to="`/usuario/${id}/editar`" tag="button" primario>
+      Editar
+    </router-link>
 
   </div>
 </template>

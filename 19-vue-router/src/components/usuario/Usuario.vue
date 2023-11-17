@@ -12,7 +12,9 @@ export default {
   name: "Usuario",
   methods: {
     inicio() {
-      this.$router.push('/');
+      //this.$router.push('/');
+      //this.$router.push({path: '/'});
+      this.$router.push({name: 'inicio'});
     }
   },
   watch: {

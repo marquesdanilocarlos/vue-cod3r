@@ -21,6 +21,11 @@ export default {
     inicio() {
       this.$router.push('/');
     }
+  },
+  watch: {
+    $route(to, from) {
+      this.id = to.params.id;
+    }
   }
 }
 </script>

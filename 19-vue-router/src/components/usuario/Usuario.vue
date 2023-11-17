@@ -12,9 +12,10 @@
 <script>
 export default {
   name: "Usuario",
+  props:['id'],
   data() {
     return {
-      id: this.$route.params.id
+      //id: this.$route.params.id
     }
   },
   methods: {
@@ -24,7 +25,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      this.id = to.params.id;
+      //this.id = to.params.id;
     }
   }
 }

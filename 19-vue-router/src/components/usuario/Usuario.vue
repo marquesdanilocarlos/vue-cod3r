@@ -2,6 +2,7 @@
   <div class="usuario">
     <h2>Usuário</h2>
     <hr>
+    <router-view name="menu"/>
     <router-view/>
     <button sucesso @click="inicio">Voltar</button>
   </div>
@@ -18,9 +19,9 @@ export default {
     }
   },
   watch: {
-    $route(to, from) {
+    /*$route(to, from) {
       //this.id = to.params.id;
-    }
+    }*/
   }
 }
 </script>

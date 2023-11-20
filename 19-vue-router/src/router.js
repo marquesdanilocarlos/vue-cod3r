@@ -38,5 +38,10 @@ export default new Router({
             path: '*',
             redirect: '/'
         }
-    ]
+    ],
+    scrollBehavior(to){
+        if (to.hash){
+            return {selector: to.hash}
+        }
+    }
 });

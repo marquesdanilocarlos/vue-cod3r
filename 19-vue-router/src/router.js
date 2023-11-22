@@ -10,7 +10,7 @@ import MenuAlt from "@/components/template/MenuAlt.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     mode: 'history',
     routes: [
         {
@@ -30,7 +30,10 @@ export default new Router({
             props: true,
             children: [
                 {path: '', component: UsuarioLista},
-                {path: ':id', component: UsuarioDetalhe, props: true},
+                {path: ':id', component: UsuarioDetalhe, props: true, beforeEnter: (to, from, next) => {
+                    console.log('Antes da rota de usuário Detalhe');
+                     next();
+                    }},
                 {path: ':id/editar', component: UsuarioEditar, props: true, name: 'editarUsuario'},
             ]
         },
@@ -45,3 +48,9 @@ export default new Router({
         }
     }
 });
+
+router.beforeEach((to, from, next) => {
+    console.log('Antes da chamada de rota');
+    next();
+});
+export default router;

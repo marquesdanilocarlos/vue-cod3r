@@ -30,6 +30,8 @@ export default {
       }
       this.sequencia++;
       this.addProduto(produto);
+      console.log(this.$store.getters.getNome);
+      console.log(this.$store.getters.getNomeCompleto);
 
       //Action
       //this.$store.dispatch('addProduto', produto);

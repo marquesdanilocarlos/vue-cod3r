@@ -20,7 +20,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addProduto']),
+    ...mapActions('carrinho',['addProduto']),
     adicionar() {
       const produto = {
         id: this.sequencia,

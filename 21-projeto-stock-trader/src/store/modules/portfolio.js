@@ -35,7 +35,7 @@ export default {
     },
     actions: {
         sellStock({commit}, order) {
-            commit('setStocks', order);
+            commit('sellStock', order);
         }
     },
     getters: {

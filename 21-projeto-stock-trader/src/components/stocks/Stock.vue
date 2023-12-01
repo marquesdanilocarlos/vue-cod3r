@@ -8,13 +8,17 @@
     <v-card>
       <v-container fill-height>
         <v-text-field label="Quantidade" type="number" v-model.number="quantity"/>
-        <v-btn class="green darken-3 white--text" @click="buyStock" :disabled="quantity <= 0 || !Number.isInteger(quantity)">Comprar</v-btn>
+        <v-btn class="green darken-3 white--text" @click="buyStock"
+               :disabled="quantity <= 0 || !Number.isInteger(quantity)">Comprar
+        </v-btn>
       </v-container>
     </v-card>
   </v-flex>
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "Stock",
   props: ['stock'],
@@ -24,13 +28,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      buyStockAction: 'buyStock'
+    }),
     buyStock() {
       const order = {
         stockId: this.stock.id,
         stockPrice: this.stock.price,
         quantity: this.quantity
       };
-      console.log(order);
+      this.buyStockAction(order);
       this.quantity = 0;
     }
   }
